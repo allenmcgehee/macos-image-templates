@@ -13,7 +13,7 @@ source "tart-cli" "tart" {
   cpu_count    = 4
   memory_gb    = 8
   disk_size_gb = 40
-  ssh_password = "P@ssw0rd"
+  ssh_password = "admin"
   ssh_username = "admin1"
   ssh_timeout  = "120s"
   boot_command = [
@@ -46,7 +46,7 @@ source "tart-cli" "tart" {
     # I have read and agree to the macOS Software License Agreement
     "<wait10s><tab><spacebar>",
     # Create a Computer Account
-    "<wait10s>admin1<tab><tab>P@ssw0rd<tab>P@ssw0rd<tab><tab><tab><spacebar>",
+    "<wait10s>admin1<tab><tab>admin<tab>admin<tab><tab><tab><spacebar>",
     # Enable Location Services
     "<wait30s><leftShiftOn><tab><leftShiftOff><spacebar>",
     # Are you sure you don't want to use Location Services?
@@ -88,7 +88,7 @@ build {
   provisioner "shell" {
     inline = [
       // Enable passwordless sudo
-      "echo P@ssw0rd | sudo -S sh -c \"mkdir -p /etc/sudoers.d/; echo 'admin1 ALL=(ALL) NOPASSWD: ALL' | EDITOR=tee visudo /etc/sudoers.d/admin1-nopasswd\"",
+      "echo admin | sudo -S sh -c \"mkdir -p /etc/sudoers.d/; echo 'admin1 ALL=(ALL) NOPASSWD: ALL' | EDITOR=tee visudo /etc/sudoers.d/admin1-nopasswd\"",
       // Enable auto-login
       //
       // See https://github.com/xfreebird/kcpassword for details.
@@ -114,7 +114,7 @@ build {
       //
       // Note that this only works if the user is logged-in,
       // i.e. not on login screen.
-      "sysadminctl -screenLock off -password P@ssw0rd",
+      "sysadminctl -screenLock off -password admin",
     ]
   }
 }
