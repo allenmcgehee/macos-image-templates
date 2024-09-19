@@ -27,7 +27,7 @@ source "tart-cli" "tart" {
     # Disable SIP
     "<wait10s>csrutil disable<enter>",
     "<wait10s>y<enter>",
-    "<wait10s>P@ssw0rd<enter>",
+    "<wait10s>admin<enter>",
     # Shutdown
     "<wait10s>halt<enter>"
   ]
