@@ -23,8 +23,8 @@ source "tart-cli" "tart" {
   cpu_count    = 4
   memory_gb    = 8
   disk_size_gb = var.disk_size
-  ssh_password = "admin"
-  ssh_username = "admin"
+  ssh_password = "P@ssw0rd"
+  ssh_username = "admin1"
   ssh_timeout  = "120s"
 }
 
@@ -77,13 +77,13 @@ build {
     script = "scripts/install-actions-runner.sh"
   }
 
-  // Create a /Users/runner → /Users/admin symlink to support certain GitHub Actions
+  // Create a /Users/runner → /Users/admin1 symlink to support certain GitHub Actions
   // like ruby/setup-ruby that hard-code the "/Users/runner/hostedtoolcache" path[1]
   //
   // [1]: https://github.com/ruby/setup-ruby/blob/6bd3d993c602f6b675728ebaecb2b569ff86e99b/common.js#L268
   provisioner "shell" {
     inline = [
-      "sudo ln -s /Users/admin /Users/runner"
+      "sudo ln -s /Users/admin1 /Users/runner"
     ]
   }
 
