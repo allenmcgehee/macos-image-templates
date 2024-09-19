@@ -11,12 +11,18 @@ variable "macos_version" {
   type = string
 }
 
+variable "disk_size" {
+  type = number
+  default = 100
+}
+
 source "tart-cli" "tart" {
-  vm_base_name = "ghcr.io/cirruslabs/macos-${var.macos_version}-vanilla:latest"
+  #vm_base_name = "ghcr.io/cirruslabs/macos-${var.macos_version}-vanilla:latest"
+  vm_base_name = "${var.macos_version}-vanilla"
   vm_name      = "${var.macos_version}-base"
   cpu_count    = 4
   memory_gb    = 8
-  disk_size_gb = 50
+  disk_size_gb = var.disk_size
   ssh_password = "admin"
   ssh_username = "admin"
   ssh_timeout  = "120s"
