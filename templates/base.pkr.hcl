@@ -23,7 +23,7 @@ source "tart-cli" "tart" {
   cpu_count    = 4
   memory_gb    = 8
   disk_size_gb = var.disk_size
-  ssh_password = "P@ssw0rd"
+  ssh_password = "admin"
   ssh_username = "admin1"
   ssh_timeout  = "120s"
 }
