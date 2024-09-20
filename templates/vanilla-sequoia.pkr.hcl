@@ -14,7 +14,7 @@ source "tart-cli" "tart" {
   memory_gb    = 8
   disk_size_gb = 40
   ssh_password = "admin"
-  ssh_username = "admin"
+  ssh_username = "admin1"
   ssh_timeout  = "300s"
   boot_command = [
     # hello, hola, bonjour, etc.
@@ -46,7 +46,7 @@ source "tart-cli" "tart" {
     # I have read and agree to the macOS Software License Agreement
     "<wait10s><tab><spacebar>",
     # Create a Computer Account
-    "<wait10s>admin<tab><tab>admin<tab>admin<tab><tab><tab><spacebar>",
+    "<wait10s>admin1<tab><tab>admin<tab>admin<tab><tab><tab><spacebar>",
     # Enable Location Services
     "<wait120s><leftShiftOn><tab><leftShiftOff><spacebar>",
     # Are you sure you don't want to use Location Services?
@@ -91,15 +91,15 @@ build {
   provisioner "shell" {
     inline = [
       // Enable passwordless sudo
-      "echo admin | sudo -S sh -c \"mkdir -p /etc/sudoers.d/; echo 'admin ALL=(ALL) NOPASSWD: ALL' | EDITOR=tee visudo /etc/sudoers.d/admin-nopasswd\"",
+      "echo admin | sudo -S sh -c \"mkdir -p /etc/sudoers.d/; echo 'admin1 ALL=(ALL) NOPASSWD: ALL' | EDITOR=tee visudo /etc/sudoers.d/admin1-nopasswd\"",
       // Enable auto-login
       //
       // See https://github.com/xfreebird/kcpassword for details.
       "echo '00000000: 1ced 3f4a bcbc ba2c caca 4e82' | sudo xxd -r - /etc/kcpassword",
-      "sudo defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser admin",
+      "sudo defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser admin1",
       // Disable screensaver at login screen
       "sudo defaults write /Library/Preferences/com.apple.screensaver loginWindowIdleTime 0",
-      // Disable screensaver for admin user
+      // Disable screensaver for admin1 user
       "defaults -currentHost write com.apple.screensaver idleTime 0",
       // Prevent the VM from sleeping
       "sudo systemsetup -setsleep Off 2>/dev/null",
